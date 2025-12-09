@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Preparation') {
             steps {
                 echo "Checking project structure..."
@@ -19,10 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Running Ansible deployment..."
-                sh """
-                    ansible-playbook /root/ansible-deploy/deploy.yml \
-                    -i /root/ansible-deploy/inventory.ini
-                """
+                sh "ansible-playbook /var/lib/jenkins/ansible-deploy/deploy.yml -i /var/lib/jenkins/ansible-deploy/inventory.ini"
             }
         }
     }
